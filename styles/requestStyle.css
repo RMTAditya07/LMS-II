@@ -1,0 +1,223 @@
+/* General Styles */
+.table {
+  color: white;
+}
+
+.no-pending-approval {
+  animation: confetti-explode 2s ease-in-out forwards;
+}
+
+@keyframes confetti-explode {
+  0% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+}
+
+.confetti {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.chart {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.btn-group .btn.active {
+  background-color: #343a40; /* Adjust based on your design */
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-danger {
+  color: red;
+}
+
+.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.stat {
+  width: 150px; /* Adjust width as needed */
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #333;
+  flex: 1 1 150px; /* Ensures responsiveness and consistent width */
+  margin-bottom: 20px; /* Moved margin here for consistency */
+}
+
+.stat-circle {
+  background-color: white;
+  border-radius: 50%;
+  width: 80px; /* Adjust size as needed */
+  height: 80px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+#app {
+  display: flex;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px; /* Sidebar width */
+  height: 100%;
+  background-color: #181411;
+  padding: 20px;
+  color: #CDD7D6;
+  z-index: 1000; /* Ensure the sidebar is above the content */
+  overflow-y: auto; /* Allows the sidebar to scroll if content overflows */
+}
+
+/* Content area styling */
+.content {
+  margin-left: 200px; /* Matches the width of the sidebar */
+  padding: 20px;
+  background-color: rgb(14, 10, 54);
+  color: #CDD7D6;
+  overflow: auto; /* Allows content to scroll if it overflows */
+  flex: 1; /* Allows the content area to grow to fill available space */
+  box-sizing: border-box; /* Ensures padding is included in width/height calculations */
+}
+.sidebar a {
+  display: block;
+  color: #CDD7D6;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  background-color: #cccccc;
+  color: #181411;
+}
+
+.sidebar-widget {
+  margin-top: 20px;
+}
+
+.logout-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 20px;
+}
+
+.btn-transparent {
+  background-color: transparent;
+  border: none;
+}
+
+.statistics {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  justify-content: space-around;
+  gap: 20px; /* Adds spacing between items */
+}
+
+
+.download-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.waiting-message {
+  display: block;
+  margin-top: 20px;
+  font-size: 16px;
+  color: #007bff;
+}
+
+.user-card {
+  border: 1px solid #150606;
+  border-radius: 5px;
+}
+
+.user-card .card-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-card .btn {
+  margin-left: 10px;
+}
+
+.user-card .badge {
+  margin-left: 10px;
+}
+
+strong {
+  color:black;
+}
+
+.user-container {
+  color: black;
+
+}
+
+.welcome-message {
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: animateIn 2s ease-in-out forwards;
+}
