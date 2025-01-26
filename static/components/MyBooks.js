@@ -26,10 +26,10 @@ export default {
             <button @click="showFeedbackModal(book.request_id)" class="btn btn-danger" title="Return">
               <img src="/static/components/assets/icons/return-svgrepo-com.svg" width="24px" />
             </button>
-            <a :href="'/api/download_pdf/' + book.book_id" class="btn btn-primary" title="Download PDF">
+            <a :href="'/api/books/download_pdf/' + book.book_id" class="btn btn-primary" title="Download PDF">
               <img src="/static/components/assets/icons/download-minimalistic-svgrepo-com.svg" width="24px" />
             </a>
-            <a :href="'/api/view_pdf/' + book.book_id" class="btn btn-info" title="View PDF">
+            <a :href="'/api/books/view_pdf/' + book.book_id" class="btn btn-info" title="View PDF">
               <img src="/static/components/assets/icons/view-alt-1-svgrepo-com.svg" width="24px" />
             </a>
           </td>
@@ -85,7 +85,7 @@ export default {
   methods: {
     async fetchAcceptedBooks() {
       try {
-        const response = await fetch('/api/accepted-books',
+        const response = await fetch('/api/requests/accepted-books',
           {
             headers: {
               'Authentication-Token': this.token,
@@ -104,7 +104,7 @@ export default {
     },
     async submitFeedback() {
       try {
-        const response = await fetch(`/api/book-requests/${this.currentRequestId}/return`, {
+        const response = await fetch(`/api/requests/return/${this.currentRequestId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

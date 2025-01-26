@@ -93,10 +93,10 @@ export default{
               <button @click="showFeedbackModal(book.request_id)" class="btn btn-danger" title="Return">
                 <img src="/static/components/assets/icons/return-svgrepo-com.svg" width="24px" />
               </button>
-              <a :href="'/api/download_pdf/' + book.book_id" class="btn btn-primary" title="Download PDF" @click="handleDownloadClick()">
+              <a :href="'/api/books/' + book.book_id+'/download'" class="btn btn-primary" title="Download PDF" @click="handleDownloadClick()">
                 <img src="/static/components/assets/icons/download-minimalistic-svgrepo-com.svg" width="24px" />
               </a>
-              <a :href="'/api/view_pdf/' + book.book_id" class="btn btn-info" title="View PDF">
+              <a :href="'/api/books/' + book.book_id+'/view'" class="btn btn-info" title="View PDF">
                 <img src="/static/components/assets/icons/view-alt-1-svgrepo-com.svg" width="24px" />
               </a>
             </td>
@@ -243,7 +243,7 @@ mounted() {
 methods: {
   async fetchRequestedBooks() {
     try {
-      const response = await fetch('/api/book-requests', {
+      const response = await fetch('/api/requests/', {
         headers: {
           'Authentication-Token': this.token,
         }
@@ -265,7 +265,7 @@ methods: {
   },
   async submitFeedback() {
     try {
-      const response = await fetch(`/api/book-requests/${this.currentRequestId}/return`, {
+      const response = await fetch(`/api/requests/return/${this.currentRequestId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

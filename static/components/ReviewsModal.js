@@ -78,7 +78,7 @@ export default {
   methods: {
     async fetchReviews() {
       try {
-        const response = await fetch(`/api/book/${this.bookId}/reviews`, {
+        const response = await fetch(`/api/books/${this.bookId}/reviews`, {
           headers: {
             'Authentication-Token': localStorage.getItem('auth-token')
           }
@@ -112,7 +112,7 @@ export default {
       }
       
       try {
-        const response = await fetch(`/api/book/${this.bookId}/reviews`, {
+        const response = await fetch(`/api/books/${this.bookId}/reviews`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

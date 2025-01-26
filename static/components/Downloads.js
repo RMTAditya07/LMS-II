@@ -23,16 +23,16 @@ export default {
   methods: {
     async downloadSections() {
       this.isWaiting = true;
-      const res = await fetch('/api/export/csv?type=sections');
+      const res = await fetch('/api/reports/export/csv?type=sections');
       const data = await res.json();
       if (res.ok) {
         const taskId = data['task-id'];
         const intv = setInterval(async () => {
-          const csv_res = await fetch(`/get-csv/${taskId}`);
+          const csv_res = await fetch(`/api/reports/get_csv/${taskId}`);
           if (csv_res.ok) {
             this.isWaiting = false;
             clearInterval(intv);
-            window.location.href = `/get-csv/${taskId}`;
+            window.location.href = `/api/reports/get_csv/${taskId}`;
           }
         }, 1000);
       } else {
@@ -41,16 +41,16 @@ export default {
     },
     async downloadBooks() {
       this.isWaiting = true;
-      const res = await fetch('/api/export/csv?type=books');
+      const res = await fetch('/api/reports/export/csv?type=books');
       const data = await res.json();
       if (res.ok) {
         const taskId = data['task-id'];
         const intv = setInterval(async () => {
-          const csv_res = await fetch(`/get-csv/${taskId}`);
+          const csv_res = await fetch(`/api/reports/get_csv/${taskId}`);
           if (csv_res.ok) {
             this.isWaiting = false;
             clearInterval(intv);
-            window.location.href = `/get-csv/${taskId}`;
+            window.location.href = `/api/reports/get_csv/${taskId}`;
           }
         }, 1000);
       } else {
@@ -59,16 +59,16 @@ export default {
     },
     async downloadBookRequests() {
       this.isWaiting = true;
-      const res = await fetch('/api/export/csv?type=book_requests');
+      const res = await fetch('/api/reports/export/csv?type=book_requests');
       const data = await res.json();
       if (res.ok) {
         const taskId = data['task-id'];
         const intv = setInterval(async () => {
-          const csv_res = await fetch(`/get-csv/${taskId}`);
+          const csv_res = await fetch(`/api/reports/get_csv/${taskId}`);
           if (csv_res.ok) {
             this.isWaiting = false;
             clearInterval(intv);
-            window.location.href = `/get-csv/${taskId}`;
+            window.location.href = `/api/reports/get_csv/${taskId}`;
           }
         }, 1000);
       } else {

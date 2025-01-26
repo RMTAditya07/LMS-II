@@ -4,7 +4,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from flask import render_template_string
 
-from application.models import Book, BookRequest, User, db
+from application.models import db
+from application.api.users.models import User
+from application.api.requests.models import BookRequest
 
 # SMTP Configuration
 SMTP_SERVER = 'smtp.gmail.com'

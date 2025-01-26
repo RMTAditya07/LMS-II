@@ -71,9 +71,9 @@ export default {
               <td>{{ book.section_id }}</td>
               <td>
                 <router-link :to="'/edit_book/' + book.id" class="btn btn-primary">Edit</router-link>
-                <a :href="'/api/view_pdf/' + book.id" class="btn btn-secondary">View</a>
+                <a :href="'/api/books/'+ book.id+'/view'" class="btn btn-secondary">View</a>
                 <button @click="deleteBook(book.id)" class="btn btn-danger">Delete</button>
-                <a :href="'/api/download_pdf/' + book.id" class="btn btn-info">Download PDF</a>
+                <a :href="'/api/books/'+book.id+'/download'" class="btn btn-info">Download PDF</a>
 
               </td>
             </tr>

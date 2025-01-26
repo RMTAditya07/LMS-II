@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     fetchBooks() {
-      fetch(`/api/section/${this.sectionId}`)
+      fetch(`/api/sections/${this.sectionId}`)
         .then(response => response.json())
         .then(data => {
           this.books = data.books;

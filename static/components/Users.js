@@ -44,7 +44,7 @@ export default {
     async approve(userId) {
       this.loading = true;
       try {
-        const res = await fetch(`/activate/inst/${userId}`, {
+        const res = await fetch(`/api/user/activate/inst/${userId}`, {
           headers: {
             "Authentication-Token": this.token,
             'Content-Type': 'application/json',
@@ -67,7 +67,7 @@ export default {
     async fetchUsers() {
       this.loading = true;
       try {
-        const res = await fetch('/users', {
+        const res = await fetch('/api/user', {
           headers: {
             'Authentication-Token': this.token,
           }

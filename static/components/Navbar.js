@@ -67,7 +67,7 @@ export default {
     },
     async logout() {
       const userId = sessionStorage.getItem('user_id');
-      const url = '/api/update_last_visit';  // Replace with your actual endpoint
+      const url = '/api/user/last-visit';  // Replace with your actual endpoint
       const data = { user_id: userId };
 
       try {
@@ -94,7 +94,7 @@ export default {
     },
     async fetchUserCreditPoints() {
       try {
-        const response = await fetch('/api/credit-points', {
+        const response = await fetch('/api/user/credit-points', {
           headers: {
             'Authentication-Token': this.is_login,
           },

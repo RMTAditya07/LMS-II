@@ -18,10 +18,10 @@ export default {
                 <img src="/static/components/assets/icons/delete-svgrepo-com.svg" width="24px" />
                 </button>
                 
-                <a v-if="!isRequested" :href="'/api/download_pdf/' + book.id" class="btn btn-success">
+                <a v-if="!isRequested" :href="'/api/books/'+ book.id+'/download'" class="btn btn-success">
                 <img src="/static/components/assets/icons/download-minimalistic-svgrepo-com.svg" width="24px" />
               </a>
-              <a v-if="!isRequested" :href="'/api/view_pdf/' + book.id" class="btn btn-primary">
+              <a v-if="!isRequested" :href="'/api/books/'+ book.id+'/view'" class="btn btn-primary">
                               <img src="/static/components/assets/icons/view-alt-1-svgrepo-com.svg" width="24px" />
 
               </a>
@@ -80,7 +80,7 @@ export default {
         return;
       }
       try {
-        const response = await fetch(`/api/requests`, {
+        const response = await fetch(`/api/requests/create`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

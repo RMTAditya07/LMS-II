@@ -218,7 +218,7 @@ template : `
   methods: {
     async fetchRequests(status) {
       try {
-        const response = await fetch(`/api/requests/${status}`, {
+        const response = await fetch(`/api/requests/status/${status}`, {
           headers: {
             'Authentication-Token': this.token,
           },
@@ -238,7 +238,7 @@ template : `
     },
     async approveRequest(requestId) {
       try {
-        await fetch(`/api/requests/${requestId}/approve`, { method: 'POST' });
+        await fetch(`/api/requests/approve/${requestId}`, { method: 'POST' });
         this.fetchRequests('requested');
         this.fetchRequests('granted');
       } catch (error) {
@@ -247,7 +247,7 @@ template : `
     },
     async rejectRequest(requestId) {
       try {
-        await fetch(`/api/requests/${requestId}/reject`, { method: 'POST' });
+        await fetch(`/api/requests/reject/${requestId}`, { method: 'POST' });
         this.fetchRequests('requested');
         this.fetchRequests('rejected');
       } catch (error) {
@@ -256,7 +256,7 @@ template : `
     },
     async revokeRequest(requestId) {
       try {
-        await fetch(`/api/requests/${requestId}/revoke`, { method: 'POST' });
+        await fetch(`/api/requests/revoke/${requestId}`, { method: 'POST' });
         this.fetchRequests('granted');
         this.fetchRequests('revoked');
       } catch (error) {

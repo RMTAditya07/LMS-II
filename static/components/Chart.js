@@ -128,15 +128,15 @@ export default {
     async fetchStatisticsData() {
       try {
         const [booksBySectionRes, requestsBySectionRes, totalUsersRes, mostRequestedBooksRes, avgRatingByBookRes, totalRequestsRes, totalBooksRes,totalSectionsRes] = await Promise.all([
-          fetch('/api/stats?books_by_section').then(res => res.json()),
-          fetch('/api/stats?requests_by_section').then(res => res.json()),
-          fetch('/api/stats?total_users').then(res => res.json()),
-          fetch('/api/stats?most_requested_books').then(res => res.json()),
-          fetch('/api/stats?average_rating_by_book').then(res => res.json()),
-          fetch('/api/stats?total_requests_each_month').then(res => res.json()),
+          fetch('/api/stats?type=books_by_section').then(res => res.json()),
+          fetch('/api/stats?type=requests_by_section').then(res => res.json()),
+          fetch('/api/stats?type=total_users').then(res => res.json()),
+          fetch('/api/stats?type=most_requested_books').then(res => res.json()),
+          fetch('/api/stats?type=average_rating_by_book').then(res => res.json()),
+          fetch('/api/stats?type=total_requests_each_month').then(res => res.json()),
           // fetch('/api/stats/users_enrolled_each_month').then(res => res.json()),
-          fetch('/api/stats?total_users').then(res => res.json()),
-          fetch('/api/stats?total_users').then(res => res.json())
+          fetch('/api/stats?type=total_users').then(res => res.json()),
+          fetch('/api/stats?type=total_users').then(res => res.json())
         ]);
 
         // Filter out null values for avgRatingByBook

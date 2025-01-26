@@ -1,7 +1,11 @@
 from celery import shared_task
 from jinja2 import Template
 from sqlalchemy import func
-from .models import BookRequest, Book, Role, User, Section,db
+from .models import db
+from application.api.books.models import Book
+from application.api.users.models import User, Role
+from application.api.sections.models import Section
+from application.api.requests.models import BookRequest
 # from flask_mail import Mail, Message
 import csv
 import io

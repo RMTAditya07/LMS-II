@@ -65,7 +65,7 @@ export default {
     methods: {
       fetchSection() {
         // Replace with actual API call
-        fetch('/api/section/' + this.$route.params.id)
+        fetch('/api/sections/' + this.$route.params.id)
           .then(response => response.json())
           .then(data => {
             console.log('Fetched section data:', data); // Debugging line
