@@ -1,0 +1,6 @@
+node_modules/
+myenvo/
+*.pyc
+*.pyo
+*.pyd
+flask_session/

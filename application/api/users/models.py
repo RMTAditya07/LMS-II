@@ -2,7 +2,7 @@
 from datetime import datetime
 from sqlalchemy import Column, ForeignKey, Integer, String, Time
 from flask_security import UserMixin, RoleMixin
-from application.models import db
+from application.extensions import db
 from sqlalchemy.orm import relationship
 
 class RolesUsers(db.Model):

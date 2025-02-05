@@ -1,7 +1,7 @@
 from datetime import datetime
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, LargeBinary, String
 from sqlalchemy.orm import relationship
-from application.models import db
+from application.extensions import db
 
 class Book(db.Model):
     id = Column(Integer, primary_key=True)

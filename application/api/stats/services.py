@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 from sqlalchemy.sql import text
-from application.models import db
+from application.extensions import db
 from application.api.books.models import Book
 from application.api.requests.models import BookRequest
 from application.api.sections.models import Section

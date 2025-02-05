@@ -203,9 +203,11 @@ export default {
         });
     },
     fetchBooks() {
+      const role = localStorage.getItem('role');
       fetch('/api/books', {
         headers: {
           'Authentication-Token': this.token,
+          'Role': role
         }
       })
         .then(response => response.json())

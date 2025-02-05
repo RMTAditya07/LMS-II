@@ -38,7 +38,7 @@ class DevelopmentConfig(Config):
     SENDER_PASSWORD = ""
     CACHE_REDIS_HOST ="localhost"
     CACHE_REDIS_PORT =6379
-    CACHE_REDIS_DB =3
+    CACHE_REDIS_DB =0
     
     
 

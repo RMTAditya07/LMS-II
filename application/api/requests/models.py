@@ -2,7 +2,7 @@
 from datetime import datetime
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, Text
 from sqlalchemy.ext.hybrid import hybrid_property
-from application.models import db
+from application.extensions import db
 
 class BookRequest(db.Model):
     id = Column(Integer, primary_key=True)

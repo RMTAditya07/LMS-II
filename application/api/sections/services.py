@@ -2,7 +2,7 @@
 from application.api.books.models import Book
 from application.api.requests.models import BookRequest
 from .models import Section
-from application.models import db
+from application.extensions import db
 
 def get_all_sections():
     sections = Section.query.all()
