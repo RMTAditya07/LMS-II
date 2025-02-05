@@ -1,3 +1,4 @@
+import re
 from datetime import datetime
 from flask import Blueprint, redirect, request, jsonify
 from flask_security import auth_required, roles_required, roles_accepted
@@ -10,6 +11,9 @@ from .services import (
 )
 
 sections_bp_v2 = Blueprint("sections_v2", __name__)
+
+name_pattern = re.compile(r'^[a-zA-Z0-9 ]{3,50}$')
+description_pattern = re.compile(r'^[a-zA-Z0-9 .,]{5,200}$')
 
 
 @auth_required("token")
@@ -26,13 +30,21 @@ def fetch_sections():
 def add_section():
     """formating the date_created in v2"""
     try:
-        data = request.json
-        new_section = create_section(
-            name=data.get("name"), 
-            description=data.get("description"),
-        )
+        name = request.form.get("section_name").strip()
+        description = request.form.get("section_desc").strip()
+        # Validate name
+        if not name_pattern.fullmatch(name):
+            return jsonify({'error': "Invalid name. It should be 3-50 characters long and contain only letters, numbers, and spaces."}), 400
+
+        # Validate description
+        if not description_pattern.fullmatch(description):
+            return jsonify({'error': "Invalid description. It should be 5-200 characters long and contain only letters, numbers, spaces, commas, and periods."}), 400
+
+        new_section = create_section(name=name, description=description)
+
         # ✅ Convert full timestamp to YYYY-MM-DD format
-        date_created = datetime.strptime(new_section.date_created, "%Y-%m-%d %H:%M:%S.%f").strftime("%Y-%m-%d")
+        date_created = new_section.date_created.strftime("%Y-%m-%d")
+
 
         return jsonify({
             'id': new_section.id,
@@ -64,6 +76,17 @@ def fetch_section(section_id):
 def modify_section(section_id):
     try:
         data = request.json
+        name = data.get("name", "").strip()
+        description = data.get("description", "").strip()
+
+        # Validate name
+        if name and not name_pattern.fullmatch(name):
+            return jsonify({'error': "Invalid name. It should be 3-50 characters long and contain only letters, numbers, and spaces."}), 400
+
+        # Validate description
+        if description and not description_pattern.fullmatch(description):
+            return jsonify({'error': "Invalid description. It should be 5-200 characters long and contain only letters, numbers, spaces, commas, and periods."}), 400
+
         updated_section = update_section(section_id, data)
         return jsonify({'id': updated_section.id, 'name': updated_section.name, 'description': updated_section.description}), 200
     except ValueError as e:
