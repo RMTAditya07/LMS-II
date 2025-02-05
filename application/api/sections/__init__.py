@@ -4,4 +4,5 @@ from flask import Blueprint
 sections_bp = Blueprint('sections', __name__)
 
 # Import routes after defining the Blueprint to avoid circular imports
-from . import routes
+from . import routes_v1
+from . import routes_v2

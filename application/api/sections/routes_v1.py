@@ -1,0 +1,62 @@
+from flask import Blueprint, request, jsonify
+from flask_security import auth_required, roles_required, roles_accepted
+from .services import (
+    get_all_sections,
+    create_section,
+    delete_section,
+    get_section_by_id,
+    update_section,
+)
+
+sections_bp_v1 = Blueprint("sections_v1", __name__)
+
+@auth_required("token")
+@roles_accepted('admin', 'student')
+@sections_bp_v1.route("/", methods=["GET"])
+def fetch_sections():
+    sections = get_all_sections()
+    return jsonify(sections), 200
+
+@auth_required("token")
+@roles_required("admin")
+@sections_bp_v1.route("/", methods=["POST"])
+def add_section():
+    try:
+        name = request.form.get("section_name")
+        description = request.form.get("section_desc")
+
+        if not name or not description:
+            raise ValueError("Both section name and description are required")
+
+        # Process section creation
+        new_section = create_section(name, description)
+        return jsonify({'id': new_section.id, 'name': new_section.name, 'description': new_section.description}), 201
+    
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 400
+
+@sections_bp_v1.route("/<int:section_id>", methods=["DELETE"])
+def remove_section(section_id):
+    try:
+        delete_section(section_id)
+        return '', 204
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 404
+
+@sections_bp_v1.route("/<int:section_id>", methods=["GET"])
+def fetch_section(section_id):
+    user_id = request.headers.get('X-User-ID')  # Example of user context
+    try:
+        section = get_section_by_id(section_id, user_id)
+        return jsonify(section), 200
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 404
+
+@sections_bp_v1.route("/<int:section_id>", methods=["PUT"])
+def modify_section(section_id):
+    try:
+        data = request.json
+        updated_section = update_section(section_id, data)
+        return jsonify({'id': updated_section.id, 'name': updated_section.name, 'description': updated_section.description}), 200
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 404

@@ -43,21 +43,48 @@ def create_app():
     # Register views, blueprints, or routes
     with app.app_context():
         from application.api.books import books_bp
+        from application.api.books.proxy import books_bp_proxy
+        
         from application.api.requests import requests_bp
-        from application.api.sections import sections_bp
+        from application.api.requests.proxy import requests_bp_proxy
+        
+        from application.api.sections.routes_v1 import sections_bp_v1
+        from application.api.sections.routes_v2 import sections_bp_v2
+        from application.api.sections.proxy import sections_bp_proxy
+        
         from application.api.stats import statistics_bp
+        from application.api.stats.proxy import stats_bp_proxy
+        
         from application.api.reports import reports_bp
+        from application.api.reports.proxy import reports_bp_proxy
+        
         from application.api.users import users_bp
+        from application.api.users.proxy import users_bp_proxy
+        
         from application.api.main import main_bp
+        
         
         # Register blueprints or individual route modules
         app.register_blueprint(main_bp)
-        app.register_blueprint(books_bp, url_prefix='/api/books')
-        app.register_blueprint(requests_bp, url_prefix='/api/requests')
-        app.register_blueprint(sections_bp, url_prefix='/api/sections')
-        app.register_blueprint(statistics_bp, url_prefix='/api/stats')
-        app.register_blueprint(reports_bp, url_prefix='/api/reports')
-        app.register_blueprint(users_bp,url_prefix="/api/user")
+        app.register_blueprint(books_bp, url_prefix='/api/v1/books')
+        app.register_blueprint(books_bp_proxy)   
+        
+        app.register_blueprint(requests_bp, url_prefix='/api/v1/requests')
+        app.register_blueprint(requests_bp_proxy)   
+         # ✅ Both v1 & v2 are now available
+        app.register_blueprint(sections_bp_v1, url_prefix='/api/v1/sections')
+        app.register_blueprint(sections_bp_v2, url_prefix='/api/v2/sections')
+        # Register the proxy route
+        app.register_blueprint(sections_bp_proxy)                      
+        
+        app.register_blueprint(statistics_bp, url_prefix='/api/v1/stats')
+        app.register_blueprint(stats_bp_proxy)   
+        
+        app.register_blueprint(reports_bp, url_prefix='/api/v1/reports')
+        app.register_blueprint(reports_bp_proxy)   
+        
+        app.register_blueprint(users_bp,url_prefix="/api/v1/user")
+        app.register_blueprint(users_bp_proxy)   
     
     return app
 
