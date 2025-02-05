@@ -72,7 +72,7 @@ export default {
 
       try {
         const response = await fetch(url, {
-          method: 'POST',
+          method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
             'Authentication-Token': this.is_login,

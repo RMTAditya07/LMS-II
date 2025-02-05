@@ -2,7 +2,7 @@ from datetime import datetime
 from application.api.users.models import User
 from application.sec import datastore
 from werkzeug.security import check_password_hash
-from application.models import db
+from application.extensions import db
 
 def login_user(email, password):
     user = datastore.find_user(email=email)

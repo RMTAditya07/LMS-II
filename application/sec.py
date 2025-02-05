@@ -1,5 +1,5 @@
 from flask_security import SQLAlchemyUserDatastore
-from .models import db
+from .extensions import db
 from application.api.users.models import User, Role
 
 

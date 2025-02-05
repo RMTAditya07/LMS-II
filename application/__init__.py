@@ -1,15 +1,17 @@
 import os
+import redis
 import logging
 from flask import Flask
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 from flask_security import Security
 from flask_sqlalchemy import SQLAlchemy
 from config import DevelopmentConfig
-from application.models import db
+from application.extensions import db, cache, limiter
 from application.api.books.models import Book
 from application.api.users.models import User
 from application.api.sections.models import Section
 from application.api.requests.models import BookRequest
-from application.instances import cache
 from application.sec import datastore
 from application.worker import celery_init_app
 from application.tasks import generate_monthly_report, send_daily_reminders
@@ -28,6 +30,10 @@ def create_app():
         template_folder=os.path.join(base_dir, '..', 'templates'))
     app.config.from_object(DevelopmentConfig)
     
+    # redis_client = redis.Redis(host='localhost', port=6379, db=0)
+
+    
+    limiter.init_app(app)
     # Initialize extensions
     db.init_app(app)
     excel.init_excel(app)

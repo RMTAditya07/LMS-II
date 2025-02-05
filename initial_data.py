@@ -3,7 +3,11 @@ import os
 import random
 from main import app
 from application.sec import datastore
-from application.models import Book, db, Role, BookRequest, User, Section
+from application.extensions import db
+from application.api.books.models import Book
+from application.api.users.models import User, Role
+from application.api.sections.models import Section
+from application.api.requests.models import BookRequest
 from flask_security import hash_password
 from werkzeug.security import generate_password_hash
 

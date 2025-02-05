@@ -1,7 +1,7 @@
 from celery import shared_task
 from jinja2 import Template
 from sqlalchemy import func
-from .models import db
+from .extensions import db
 from application.api.books.models import Book
 from application.api.users.models import User, Role
 from application.api.sections.models import Section

@@ -2,7 +2,7 @@ from io import BytesIO
 import tempfile
 from flask import session, abort, flash, send_file
 from sqlalchemy.exc import IntegrityError
-from application.models import db
+from application.extensions import db
 from application.api.books.models import Book
 from application.api.sections.models import Section
 from application.api.requests.models import BookRequest

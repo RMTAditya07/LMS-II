@@ -4,7 +4,7 @@ from application.api.books.models import Book
 from application.api.requests.models import BookRequest
 from application.api.sections.models import Section
 from application.api.users.models import User
-from application.models import db
+from application.extensions import db
 
 def format_date(date):
     if date:
